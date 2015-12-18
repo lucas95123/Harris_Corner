@@ -8,8 +8,9 @@ using namespace cv;
 using namespace std;
 static const char* trackbarR = "R threshould";
 static const char* trackbarM = "M threshould";
-Mat imgIx;
-Mat imgIy;
+Mat* imgIx;
+Mat* imgIy;
+Mat  img;
 Mat imgHarris;
 Mat imgMax;
 Mat imgMin;
@@ -35,17 +36,17 @@ void harrisCorner(Mat &Ix, Mat &Iy, Mat &dst, int k, int threshould, long long t
 
 			for (int i = 0; i < apertureSize; i++)
 			for (int j = 0; j < apertureSize; j++)
-				A += pow(Ix.at<uchar>(cvPoint(col - 1 + i, row - 1 + j)), 2);
+				A += pow(Ix.at<short>(cvPoint(col - 1 + i, row - 1 + j)), 2);
 
 			for (int i = 0; i < apertureSize; i++)
 			for (int j = 0; j < apertureSize; j++)
-				B += Ix.at<uchar>(cvPoint(col - 1 + i, row - 1 + j))*Iy.at<uchar>(cvPoint(col - 1 + i, row - 1 + j));
+				B += Ix.at<short>(cvPoint(col - 1 + i, row - 1 + j))*Iy.at<short>(cvPoint(col - 1 + i, row - 1 + j));
 
 			C = B;
 
 			for (int i = 0; i < apertureSize; i++)
 			for (int j = 0; j < apertureSize; j++)
-				D += pow(Iy.at<uchar>(cvPoint(col - 1 + i, row - 1 + j)), 2);
+				D += pow(Iy.at<short>(cvPoint(col - 1 + i, row - 1 + j)), 2);
 
 			if (col == 69)
 			{
@@ -71,9 +72,17 @@ void harrisCorner(Mat &Ix, Mat &Iy, Mat &dst, int k, int threshould, long long t
 				imgMin.at<uchar>(cvPoint(col, row)) = 0;
 
 			if (R >= threshouldR)
-				dst.at<uchar>(cvPoint(col, row)) = 255;
+			{
+				dst.at<Vec3b>(cvPoint(col, row))[0] = 255;
+				dst.at<Vec3b>(cvPoint(col, row))[1] = 0;
+				dst.at<Vec3b>(cvPoint(col, row))[2] = 0;
+			}
 			else
-				dst.at<uchar>(cvPoint(col, row)) = 0;
+			{
+				dst.at<Vec3b>(cvPoint(col, row))[0] *= 0.3;
+				dst.at<Vec3b>(cvPoint(col, row))[1] *= 0.3;
+				dst.at<Vec3b>(cvPoint(col, row))[2] *= 0.3;
+			}
 		}
 	}
 }
@@ -112,7 +121,8 @@ void convolute2(float* temp, Mat &imgSrc, Mat &imgDst)
 
 void on_trackR(int pos)
 {
-	harrisCorner(imgIx, imgIy, imgHarris, 0.06, valueM*1000, valueR*10000000, 3);
+	imgHarris = img.clone();
+	harrisCorner(*imgIx, *imgIy, imgHarris, 0.06, valueM*1000, valueR*10000000, 3);
 	imshow("imgMax", imgMax);
 	imshow("imgMin", imgMin);
 	imshow("HarrisA", imgHarris);
@@ -120,7 +130,8 @@ void on_trackR(int pos)
 
 void on_trackM(int pos)
 {
-	harrisCorner(imgIx, imgIy, imgHarris, 0.06, valueM*1000, valueR *10000000, 3);
+	imgHarris = img.clone();
+	harrisCorner(*imgIx, *imgIy, imgHarris, 0.06, valueM*1000, valueR *10000000, 3);
 	imshow("imgMax", imgMax);
 	imshow("imgMin", imgMin);
 	imshow("HarrisA", imgHarris);
@@ -128,32 +139,21 @@ void on_trackM(int pos)
 
 int main(int argc, char** argv[])
 {
-	Mat img = imread("6.png");
-	imshow("original", img);
-	imgIx = img.clone();
-	imgIy = img.clone();
-	float SobelX[9];
-	SobelX[0] = -1; SobelX[1] = 0; SobelX[2] = 1;
-	SobelX[3] = -2; SobelX[4] = 0; SobelX[5] = 2;
-	SobelX[6] = -1; SobelX[7] = 0; SobelX[8] = 1;
-	float SobelY[9];
-	SobelY[0] = 1; SobelY[1] = 2; SobelY[2] = 1;
-	SobelY[3] = 0; SobelY[4] = 0; SobelY[5] = 0;
-	SobelY[6] = -1; SobelY[7] = -2; SobelY[8] = -1;
-	cvtColor(img, img, CV_BGR2GRAY);
-	cvtColor(imgIx, imgIx, CV_BGR2GRAY);
-	cvtColor(imgIy, imgIy, CV_BGR2GRAY);
+	img = imread("6.png");
 	imgHarris = img.clone();
-	imgMin = img.clone();
-	imgMax = img.clone();
+	imgIx = new Mat(cvSize(img.rows,img.cols),CV_16SC1);
+	imgIy = new Mat(cvSize(img.rows, img.cols), CV_16SC1);
+	Mat imgBinarized = img.clone();
+	cvtColor(imgBinarized, imgBinarized, CV_BGR2GRAY);
+	imgMin = imgBinarized.clone();
+	imgMax = imgBinarized.clone();
 
-	Sobel(img, imgIx, img.depth(), 1, 0);
-	Sobel(img, imgIy, img.depth(), 0, 1);
-	//convolute3(SobelX, img, imgIx);
-	//convolute3(SobelY, img, imgIy);
+	Sobel(imgBinarized, *imgIx, imgIx->depth(), 1, 0);
+	Sobel(imgBinarized, *imgIy, imgIx->depth(), 0, 1);
 
+	harrisCorner(*imgIx, *imgIy, imgHarris, 0.06, valueM*1000, valueR * 10000000, 3);
 
-	harrisCorner(imgIx, imgIy, imgHarris, 0.06, valueM*1000, valueR * 10000000, 3);
+	imshow("original", img);
 	imshow("imgMax", imgMax);
 	imshow("imgMin", imgMin);
 	imshow("HarrisA", imgHarris);
