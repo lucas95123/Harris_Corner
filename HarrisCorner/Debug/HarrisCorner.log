@@ -1,20 +1,21 @@
-﻿生成启动时间为 2015/12/18 21:05:18。
+﻿生成启动时间为 2015/12/18 21:55:02。
      1>项目“D:\openCV projects\HarrisCorner\HarrisCorner\HarrisCorner.vcxproj”在节点 2 上(Build 个目标)。
      1>ClCompile:
          D:\Program files\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D _CRT_SECURE_NO_WARNINGS /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt main.cpp
          main.cpp
-     1>d:\opencv projects\harriscorner\harriscorner\main.cpp(39): warning C4244: “+=”: 从“double”转换到“__int64”，可能丢失数据
-     1>d:\opencv projects\harriscorner\harriscorner\main.cpp(49): warning C4244: “+=”: 从“double”转换到“__int64”，可能丢失数据
-     1>d:\opencv projects\harriscorner\harriscorner\main.cpp(63): warning C4244: “参数”: 从“__int64”转换到“double”，可能丢失数据
-     1>d:\opencv projects\harriscorner\harriscorner\main.cpp(82): warning C4244: “*=”: 从“double”转换到“uchar”，可能丢失数据
-     1>d:\opencv projects\harriscorner\harriscorner\main.cpp(83): warning C4244: “*=”: 从“double”转换到“uchar”，可能丢失数据
-     1>d:\opencv projects\harriscorner\harriscorner\main.cpp(84): warning C4244: “*=”: 从“double”转换到“uchar”，可能丢失数据
-     1>d:\opencv projects\harriscorner\harriscorner\main.cpp(28): warning C4930: “cv::Mat RValue(void)”: 未调用原型函数(是否是有意用变量定义的?)
-     1>d:\opencv projects\harriscorner\harriscorner\main.cpp(99): warning C4244: “+=”: 从“float”转换到“uchar”，可能丢失数据
-     1>d:\opencv projects\harriscorner\harriscorner\main.cpp(115): warning C4244: “+=”: 从“float”转换到“uchar”，可能丢失数据
-     1>d:\opencv projects\harriscorner\harriscorner\main.cpp(125): warning C4244: “参数”: 从“double”转换到“int”，可能丢失数据
-     1>d:\opencv projects\harriscorner\harriscorner\main.cpp(134): warning C4244: “参数”: 从“double”转换到“int”，可能丢失数据
-     1>d:\opencv projects\harriscorner\harriscorner\main.cpp(154): warning C4244: “参数”: 从“double”转换到“int”，可能丢失数据
+     1>d:\opencv projects\harriscorner\harriscorner\main.cpp(48): warning C4244: “+=”: 从“double”转换到“__int64”，可能丢失数据
+     1>d:\opencv projects\harriscorner\harriscorner\main.cpp(58): warning C4244: “+=”: 从“double”转换到“__int64”，可能丢失数据
+     1>d:\opencv projects\harriscorner\harriscorner\main.cpp(66): warning C4244: “参数”: 从“__int64”转换到“double”，可能丢失数据
+     1>d:\opencv projects\harriscorner\harriscorner\main.cpp(87): warning C4244: “*=”: 从“double”转换到“uchar”，可能丢失数据
+     1>d:\opencv projects\harriscorner\harriscorner\main.cpp(88): warning C4244: “*=”: 从“double”转换到“uchar”，可能丢失数据
+     1>d:\opencv projects\harriscorner\harriscorner\main.cpp(89): warning C4244: “*=”: 从“double”转换到“uchar”，可能丢失数据
+     1>d:\opencv projects\harriscorner\harriscorner\main.cpp(32): warning C4930: “cv::Mat RValue(void)”: 未调用原型函数(是否是有意用变量定义的?)
+     1>d:\opencv projects\harriscorner\harriscorner\main.cpp(109): warning C4244: “+=”: 从“float”转换到“uchar”，可能丢失数据
+     1>d:\opencv projects\harriscorner\harriscorner\main.cpp(125): warning C4244: “+=”: 从“float”转换到“uchar”，可能丢失数据
+     1>d:\opencv projects\harriscorner\harriscorner\main.cpp(147): warning C4244: “参数”: 从“float”转换到“int”，可能丢失数据
+     1>d:\opencv projects\harriscorner\harriscorner\main.cpp(154): warning C4244: “参数”: 从“float”转换到“int”，可能丢失数据
+     1>d:\opencv projects\harriscorner\harriscorner\main.cpp(168): warning C4244: “=”: 从“double”转换到“float”，可能丢失数据
+     1>d:\opencv projects\harriscorner\harriscorner\main.cpp(185): warning C4244: “参数”: 从“float”转换到“int”，可能丢失数据
        Link:
          D:\Program files\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"D:\openCV projects\HarrisCorner\Debug\HarrisCorner.exe" /INCREMENTAL /NOLOGO opencv_ml2411d.lib opencv_calib3d2411d.lib opencv_contrib2411d.lib opencv_core2411d.lib opencv_features2d2411d.lib opencv_flann2411d.lib opencv_gpu2411d.lib opencv_highgui2411d.lib opencv_imgproc2411d.lib opencv_legacy2411d.lib opencv_objdetect2411d.lib opencv_ts2411d.lib opencv_video2411d.lib opencv_nonfree2411d.lib opencv_ocl2411d.lib opencv_photo2411d.lib opencv_stitching2411d.lib opencv_superres2411d.lib opencv_videostab2411d.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"D:\openCV projects\HarrisCorner\Debug\HarrisCorner.pdb" /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"D:\openCV projects\HarrisCorner\Debug\HarrisCorner.lib" /MACHINE:X86 Debug\main.obj
          HarrisCorner.vcxproj -> D:\openCV projects\HarrisCorner\Debug\HarrisCorner.exe
@@ -22,4 +23,4 @@
 
 生成成功。
 
-已用时间 00:00:01.11
+已用时间 00:00:01.12
