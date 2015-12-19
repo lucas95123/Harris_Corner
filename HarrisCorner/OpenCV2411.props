@@ -5,6 +5,7 @@
   <PropertyGroup>
     <IncludePath>D:\opencv\build\include;D:\opencv\build\include\opencv;D:\opencv\build\include\opencv2;$(IncludePath)</IncludePath>
     <LibraryPath>D:\opencv\build\x86\vc12\lib;$(LibraryPath)</LibraryPath>
+    <_PropertySheetDisplayName>OpenCV2411d</_PropertySheetDisplayName>
   </PropertyGroup>
   <ItemDefinitionGroup>
     <Link>
